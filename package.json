@@ -11,6 +11,9 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
+    "fs": "0.0.1-security",
+    "gray-matter": "^4.0.2",
+    "klaw": "^3.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-static": "^7.0.0",
