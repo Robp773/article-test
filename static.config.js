@@ -71,6 +71,22 @@ export default {
           }),
         })),
       },
+      {
+        path: "/test",
+        getData: () => ({
+          test
+        }),
+        children: test.map(post => ({
+          // actual path will be /test/"whatever the post slug is"
+          path: `/${post.data.slug}`,
+          // location of template for child route
+          template: "src/containers/Test-Post",
+          // passing the individual post data needed
+          getData: () => ({
+            post
+          })
+        }))
+      }
     ]
   },
   plugins: [
