@@ -6,14 +6,36 @@ media_folder: "public/uploads" # Media files will be stored in the repo under pu
 public_folder: "/uploads" # Folder path where uploaded files will be accessed, relative to the base of the built site
 
 collections:
-  - name: "test-collection" # Used in routes, e.g., /admin/collections/test-collection
-    label: "Test Collection" # Used in the UI
-    folder: "src/test-collection" # The path to the folder where the documents are stored
+  - name: "volunteer-opportunity" # Used in routes, e.g., /admin/collections/test-collection
+    label: "Volunteer Opportunity" # Used in the UI
+    folder: "src/volunteer-opportunities" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "volunteer-opportunity-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter. 
     # Remove any that aren't needed for posts
-      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Location", name: "location", widget: "map" }
+      - {label: "Description", name: "description", widget: "markdown"}
+
+  - name: "testimonials"
+    label: "Testimonial"
+    folder: "src/testimonials"
+    create: true
+    slug: "testimonial-{{slug}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Relation", name: "relation", widget: "string"}
+      - {label: "Testimonial Text", name: "testimonial-text", widget: "markdown"}
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "src/galleries"
+    create: true
+    slug: "gallery-{{slug}}"
+    fields:
+      - {label: "Gallery Name", name: "gallery-name", widget: "string"}
+      - {label: "Testimonial Text", name: "testimonial-text", widget: "list", field: {label: Image, name: image, widget: image}}
+        
+
+

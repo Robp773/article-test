@@ -6,15 +6,15 @@ import fs  from "fs";
 import klaw from "klaw";
 import matter from "gray-matter";
 
-function getPosts() {
+function getPosts(path) {
   const items = [];
   // Walk ("klaw") through posts directory and push file paths into items array //
   const getFiles = () =>
     new Promise(resolve => {
       // Check if test-collect directory exists //
       // This is the folder where your CMS collection we made earlier will store it's content. Creating a post inside this collection will add a "test-collection" directory to your repo for you.
-      if (fs.existsSync("./src/test-collection")) {
-        klaw("./src/test-collection")
+      if (fs.existsSync(`./src/${path}`)) {
+        klaw(`./src/${path}`)
           .on("data", item => {
             // Filter function to retrieve .md files //
             if (path.extname(item.path) === ".md") {
@@ -55,7 +55,7 @@ export default {
       'https://jsonplaceholder.typicode.com/posts'
     )
 
-    const test = await getPosts()
+    const testimonials = await getPosts('testimonials')
 
     return [
       {
@@ -72,20 +72,10 @@ export default {
         })),
       },
       {
-        path: "/test",
+        path: "/testimonials",
         getData: () => ({
-          test
+          testimonials
         }),
-        children: test.map(post => ({
-          // actual path will be /test/"whatever the post slug is"
-          path: `/${post.data.slug}`,
-          // location of template for child route
-          template: "src/containers/Test-Post",
-          // passing the individual post data needed
-          getData: () => ({
-            post
-          })
-        }))
       }
     ]
   },
